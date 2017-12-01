@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:08:46 by mmanley           #+#    #+#             */
-/*   Updated: 2017/11/29 15:05:25 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/01 13:15:05 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,25 @@ int		main(int argv, char **argc)
 	int fd;
 	int ret;
 	char pretab[1024];
-	char **tab;
 
-	if (argv == 2)
+	if (argv == 3)
 	{
-		if ((fd = open (argc[1], O_RDONLY)) == -1)
+		if ((fd = open (argc[2], O_RDONLY)) == -1)
 			return (0);
 		if ((ret = read(fd, pretab, 1024)) == -1)
 			return (0);
 		printf("%s\n", pretab);
-		printf("%d\n", whole_file_checking(pretab, ret));
-		printf("%d\n", square_checker(pretab, 0));
+		if (ft_atoi(argc[1]) == 1)
+			printf("%d\n", square_checks(pretab, 0, 0));
+		if (ft_atoi(argc[1]) == 2)
+		{
+			printf("%d\n", whole_file_checking(pretab, ret));
+			printf("%d\n", square_checker(pretab, 0, 0));
+		}
 		//tab = ft_strsplit(pretab, '\n');
 		//printf("%s\n", tab[0]);
 	}
-	if (argv != 2)
+	if (argv != 3)
 		{
 			printf("cp ___source_file target_file\n");
 		}

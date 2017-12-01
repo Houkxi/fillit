@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 11:22:39 by mmanley           #+#    #+#             */
-/*   Updated: 2017/11/29 18:36:19 by mmanley          ###   ########.fr       */
+/*   Created: 2017/12/01 06:44:30 by mmanley           #+#    #+#             */
+/*   Updated: 2017/12/01 17:16:35 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,124 +16,76 @@
 #include "./libft/libft.h"
 #include "ft_prog.h"
 
-/*
-Check if only '.' , '#', '\n', '\0' in the file,
- check if no less and more then 4 '#' and all adjacent to at lesast one other.
- and so 12 '.' per square
- */
-
-int		occurence_counter(char *s, char c)
+/*t_forme	**list_builder(char *square)
 {
-	int count;
-	int i;
+	t_forme *lst;
+	t_forme **stock;
+	char	**tab;
 
-	count = 0;
-	i = 0;
-	if (!s && !*s)
-		return (-1);
-	while (s[i])
+	lst = ft_lstnew_re(tab, 21);
+	free(tab);
+	stock = &lst;
+	printf("S = %p\nL = %p\n", stock, lst);
+	lst = lst->next;
+	printf("%s\n", (*stock)->tab[1]);
+	printf("%s\n", (*stock)->tab[2]);
+	printf("%s\n", (*stock)->tab[3]);
+	return (stock);
+}*/
+
+int		square_checks(char *s, int line, int col)
+{
+	char *tmp;
+	int nbr;
+	int stck;
+	t_forme	**ptr_lst = NULL;
+	t_forme *new;
+	char **tab = NULL;
+
+	nbr = 0;
+	*ptr_lst = ft_lstnew_re(NULL, 0);
+	while (s[col])
 	{
-		if (s[i] && s[i] == c)
+		stck = col;
+		while (s[col] && line < 5)
 		{
-			count++;
-			i++;
-		}
-		else if (s[i] && s[i] != c)
-			i++;
-	}
-	return (count);
-}
-
-int		whole_file_checking(char *str, int size)
-{
-	int j;
-	int k;
-	int l;
-
-	/*int i = ft_strlen(str);
-	printf("I = %d\n", i);*/
-	if (!str && !*str)
-		return (0);
-	j = occurence_counter(str, '.');
-	k = occurence_counter(str, '#');
-	l = occurence_counter(str, '\n');
-	printf("RetL__%d____ . __%d____ # __%d == %d, SIZE = %d\n", l, j, k, l + k + j, size);
-	printf("%d\n", (l + 1) / 5 * 12);
-	printf("%d\n", (l + 1) / 5 * 4);
-	if (((l + 1) % 5) != 0)
-		return (0);
-	if ((j == (l + 1) / 5 * 12) && (k == ((l + 1) / 5 * 4)) &&
-		size == l + j + k)
-		return (1);
-	else
-		return (0);
-}
-
-int		check_tetri(char *str, int start, int len)
-{
-	int count;
-
-	count = 0;
-	while (start < len)
-	{
-		if (str[start] == '#')
-		{
-			count++;
-			if ((str[start + 1] != '#' || str[start + 5] != '#') && count < 4)
-				return (0);
-			if (count == 4 && (str[start - 1] != '#' || str[start - 5] != '#'))
-				return (0);
-			start++;
-		}
-		if (str[start] == '.' || str[start] == '\n')
-			start++;
-
-	}
-	if (count == 4)
-		return (1);
-	return (0);
-}
-
-int		square_checker(char *str, int i)
-{
-	int j;
-	int k;
-
-	j = 0;
-	k = 0;
-	printf("GOOD\n");
-	while (str[i])
-	{
-		if (str[i])
-		{
-			printf("I = %d\n", i);
-			printf("_%c_\n", str[i]);
-			printf("%d\n", check_tetri(str, i, 20));
-		}
-		while (str[i] && j < 4)
-		{
-			if (str[i] != '.' && str[i] != '#' && str[i] != '\n')
-				return (0);
-			if (str[i] == '\n')
+			while (s[col] && (s[col] == '.' || s[col] == '#'))
 			{
-					j++;
-					i++;
+				if (s[col] != '.' && s[col] != '#' && s[col] != '\n')
+				{
+					printf("Mauvais CHAR\n");
+					return (0);
+				}
+				if (s[col] == '#')
+					nbr++;
+				col++;
 			}
-			if (str[i] == '.' || str[i] == '#')
+			if (s[col] && s[col] != '\n')
 			{
-				i++;
+				printf("Pas de retour ligne\n");
+				return (0);
 			}
-			printf("WHAT%d\n", i);
+			//printf("_%c_\n%d__%d\n", s[col], col, line);
+			line++;
+			col++;
 		}
-
-		if (str[i] != '\0' && str[i] != '\n')
+		//printf("MOD = %d___%d\n", col % 21, col);
+		if (nbr < 4 || nbr > 4 || (s[col] && (col % 21 > 0)))
+		{
+			printf("NBR # Mauvais || NBR col Mauvais\n");
 			return (0);
-		if (str[i])
-		{
-			k = 0;
-			j = 0;
 		}
-		i++;
+		//printf("Col = %d, Line = %d\n", col, line);
+		tmp = ft_strsub(s, stck, 20);
+		tab = ft_strsplit(tmp, '\n');
+		new = ft_lstnew_re(tab, 20);
+		//printf("%s\n", new->tab[1]);
+		ft_lstadd_end(ptr_lst, new);
+		free(tab);
+		free(new);
+		free(tmp);
+		line = 0;
+		nbr = 0;
 	}
-	return (1);
+	return (col);
 }
