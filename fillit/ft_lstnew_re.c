@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 11:46:42 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/01 16:42:48 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/04 20:08:44 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ t_forme	*ft_lstnew_re(char **content, size_t content_size)
 	if (!content)
 	{
 		newlst->tab = NULL;
+		newlst->myletter = 0;
 		newlst->content_size = 0;
+		newlst->xaxis = 0;
+		newlst->yaxis = 0;
 	}
 	if (content)
 	{
@@ -37,7 +40,10 @@ t_forme	*ft_lstnew_re(char **content, size_t content_size)
 			return (NULL);
 		}
 		newlst->tab = content;
+		newlst->myletter = 0;
 		newlst->content_size = content_size;
+		newlst->xaxis = 0;
+		newlst->yaxis = 0;
 	}
 	return (newlst);
 }

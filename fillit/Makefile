@@ -6,7 +6,7 @@
 #    By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 07:31:59 by mmanley           #+#    #+#              #
-#    Updated: 2017/12/01 16:46:53 by mmanley          ###   ########.fr        #
+#    Updated: 2017/12/04 16:55:39 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ FLAGS = -Wall -Wextra -Werror
 
 INC = ./libft/libft.h
 
-SRCS = ./tests.c ./file_checker.c ./ft_lstnew_re.c ./ft_tabcpy.c ./checking.c\
-		./ft_lstadd_end.c\
+SRCS = ./tests.c ./file_lexing_parsing.c ./ft_lstnew_re.c ./file_lexing.c\
+		./ft_lstadd_end.c ./ft_lst_print.c ./ft_lstmapi.c\
 
 OBJS = $(SRCS:.c=.o)
 
