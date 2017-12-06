@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:22:25 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/04 20:10:29 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/05 17:41:21 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,30 @@ void	ft_lst_print(t_forme **alst)
 			ft_putchar('\n');
 			tmp = tmp->next;
 			i = 0;
+		}
+	}
+}
+
+void	show_tab(char **tab)
+{
+	int k;
+	int j;
+
+	k = 0;
+	j = 0;
+	if (tab)
+	{
+		printf("ShowTAB\n");
+		while (tab[k])
+		{
+			while (tab[k][j])
+			{
+				ft_putchar(tab[k][j]);
+				j++;
+			}
+			ft_putchar('\n');
+			j = 0;
+			k++;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 06:44:30 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/04 20:33:35 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/06 16:33:14 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ static int	list_builder(char *s, int start, int len, t_forme **alst)
 		return (0);
 	}
 	tab = ft_strsplit(tmp, '\n');
+	printf("X = %d\n", tab_x_size(tab));
+	printf("Y = %d\n", tab_y_size(tab));
+	printf("\n");
 	new = ft_lstnew_re(tab, 20);
 	ft_lstadd_end(alst, new);
 	return (1);

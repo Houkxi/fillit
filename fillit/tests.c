@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:08:46 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/04 19:10:33 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/06 16:29:04 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			check_manager(char *str, int choose)
 			return (0);
 		}
 		final_parsing(ptr_lst);
+		//backtrack_debut(ptr_lst);
 	}
 	if (choose == 2)
 	{

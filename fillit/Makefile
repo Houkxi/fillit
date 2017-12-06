@@ -6,7 +6,7 @@
 #    By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 07:31:59 by mmanley           #+#    #+#              #
-#    Updated: 2017/12/04 16:55:39 by mmanley          ###   ########.fr        #
+#    Updated: 2017/12/06 16:25:18 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ FLAGS = -Wall -Wextra -Werror
 INC = ./libft/libft.h
 
 SRCS = ./tests.c ./file_lexing_parsing.c ./ft_lstnew_re.c ./file_lexing.c\
-		./ft_lstadd_end.c ./ft_lst_print.c ./ft_lstmapi.c\
+		./ft_lstadd_end.c ./ft_lst_print.c ./ft_lstmapi.c ./pos_tetri.c\
+		tab_resize.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -31,7 +32,13 @@ $(NAME) :
 	$(CC) $@ $(FLAGS) $(SRCS) ./libft/libft.a -I $(INC)
 
 sub :
-	cd libft && make re && make clean
+	cd libft && make re
+
+subclean :
+	cd libft && make clean
+
+subre :
+	cd libft && make fclean && make all
 
 clean :
 	@rm -f $(OBJS)
