@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 19:52:00 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/06 18:09:08 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/06 19:11:00 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,30 @@
 #include "./libft/libft.h"
 #include "ft_prog.h"
 
-int		pos_tetri(t_forme **ptr_lst, char **tab, int xt, int yt, int sizey, int sizex)
+t_coor	check_pos_possible(t_forme *ptr)
+{
+	t_coor	*x_chk;
+	t_coor	*y_chk;
+	t_coor	offset;
+
+	x_chk = tab_x_search(ptr);
+	y_chk = tab_y_search(ptr);
+	offset.y = 0;
+	offset.x = 0;
+	if (x_chk->y < y_chk->y)
+	{
+		offset.y = y_chk->y - x_chk->y;
+		offset.x = x_chk->x - y_chk->x;
+	}
+	return (offset);
+}
+
+int		pos_tetri(t_forme **ptr_lst, char **tab, int xt, int yt, t_coor offset)
 {
 	t_forme	*p;
 	int		yl;
 	int		xl;
-	int		countx = 0, county = 0, countp = 0;
+	int		countx = 0, county = 0, countp = 0, size = ft_strlen(*tab);
 	char	c;
 	char **ptab;
 
@@ -32,13 +50,25 @@ int		pos_tetri(t_forme **ptr_lst, char **tab, int xt, int yt, int sizey, int siz
 	xl = p->next->xaxis;
 	while (tab[yt] && tab[yt][xt] == '.')
 	{
-		while (ptab[yl] && yt + county < sizey)
+		while (ptab[yl])
 		{
-			while (ptab[yl][xl] && ptab[yl][xl] == '#' && xt + countx < sizex)
+			if (yt + county > size)
+				return (1);
+			while (ptab[yl][xl] && ptab[yl][xl] == c)
 			{
-				return (0);
-
+				if (xt + countx > size)
+					return (1);
+				tab[yt][xt + offset.x] = ptab[yl][xl];
+				xl++;
+				xt++;
+				if (offset.x > 0)
+					offset.y--;
+				countx++;
 			}
+			if (offset.y == 0)
+				offset.x = 0;
+			xl = 0;
+			yl++;
 		}
 	}
 		if (countp != 4)

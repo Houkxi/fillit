@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 11:54:10 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/06 18:03:34 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/06 19:10:52 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef	struct		s_forme
 
 typedef	struct		s_coor
 {
-	int y;
-	int x;
+	unsigned int y;
+	unsigned int x;
 }					t_coor;
 
 t_forme	*alpha_swap(int lettre, t_forme *elem);
@@ -40,6 +40,8 @@ void	ft_lst_print(t_forme **alst);
 void	show_tab(char **tab);
 int		square_checker(char *s, int line, int col, int nbr);
 int		square_checks(char *s, int line, int col, t_forme **ptr_lst);
+t_coor	*tab_x_search(t_forme *elem);
+t_coor	*tab_y_search(t_forme *elem);
 int		tab_x_size(char **tab);
 int		tab_y_size(char **tab);
 int		whole_file_checking(char *str, int size);

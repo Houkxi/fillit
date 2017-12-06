@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:24:13 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/06 18:07:35 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/06 19:11:47 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 #include "./libft/libft.h"
 #include "ft_prog.h"
 
-t_coor	*tab_x_search(int a, t_forme *elem)
+t_coor	*tab_x_search(t_forme *elem)
 {
 	int stck;
-	int x;
-	int y;
+	unsigned int x;
+	unsigned int y;
 	int xcount;
 	int ycount;
 	char **tab;
-	t_coor coor_hor;
+	t_coor *coor_hor = NULL;
 
 	stck = 0;
 	x = 0;
@@ -40,8 +40,8 @@ t_coor	*tab_x_search(int a, t_forme *elem)
 				x++;
 			if (tab[y][x] && tab[y][x] == '#')
 			{
-				coor_hor.y = y;
-				coor_hor.x = x;
+				coor_hor->y = y;
+				coor_hor->x = x;
 				return (coor_hor);
 			}
 			if (stck < xcount)
@@ -55,14 +55,14 @@ t_coor	*tab_x_search(int a, t_forme *elem)
 	return (coor_hor);
 }
 
-t_coor	*tab_y_search(int a, t_forme *elem)
+t_coor	*tab_y_search(t_forme *elem)
 {
-	int x;
-	int y;
+	unsigned int x;
+	unsigned int y;
 	int xcount;
 	int ycount;
 	char **tab;
-	t_coor coor_ver;
+	t_coor *coor_ver = NULL;
 
 	x = 0;
 	y = 0;
@@ -77,8 +77,8 @@ t_coor	*tab_y_search(int a, t_forme *elem)
 				y++;
 			if (tab[y] && tab[y][x] == '#')
 			{
-				coor_ver.y = y;
-				coor_ver.x = x;
+				coor_ver->y = y;
+				coor_ver->x = x;
 				return (coor_ver);
 			}
 			ycount = 0;
