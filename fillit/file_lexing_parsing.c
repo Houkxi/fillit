@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 06:44:30 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/06 16:33:14 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/07 11:40:10 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,11 @@ static int	list_builder(char *s, int start, int len, t_forme **alst)
 	tmp = ft_strsub(s, start, len);
 	if ((check_tetri(tmp, 0)) == 0)
 	{
-		printf("%s\n", tmp);
+		printf("Test\n%s\n", tmp);
 		free(tmp);
 		return (0);
 	}
 	tab = ft_strsplit(tmp, '\n');
-	printf("X = %d\n", tab_x_size(tab));
-	printf("Y = %d\n", tab_y_size(tab));
-	printf("\n");
 	new = ft_lstnew_re(tab, 20);
 	ft_lstadd_end(alst, new);
 	return (1);
