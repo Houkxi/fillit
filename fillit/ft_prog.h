@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 11:54:10 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/07 14:17:35 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/07 14:39:17 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		check_tetri(char *str, int start);
 t_coor	check_pos_possible(t_forme *ptr);
 t_forme	*coor_search(int test, t_forme *elem);
 void	ft_lstadd_end(t_forme **alst, t_forme *new);
+b_coor	*ft_all_pos(t_forme *ptr, b_coor *saver);
 t_forme	*ft_lstmapi_f(t_forme *lst, t_forme *(*f)(int i, t_forme *elem), int i);
 t_forme	*ft_lstnew_re(char **content, size_t content_size);
 void	ft_lst_print(t_forme **alst);

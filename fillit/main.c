@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:08:46 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/07 12:54:03 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/07 15:10:36 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,21 @@ int			final_parsing(t_forme **ptr_lst)
 int			check_manager(char *str, int choose)
 {
 	t_forme **ptr_lst;
+	t_forme *ptr;
 	char	**tab;
 	t_coor	offset;
+	t_coor	*newcoor;;
+	b_coor	*all_coor;
 
 	ptr_lst = (t_forme**)malloc(sizeof(t_forme*));
 	*ptr_lst = ft_lstnew_re(NULL, 0);
+	all_coor = (b_coor*)malloc(sizeof(b_coor));
+	newcoor = (t_coor*)malloc(sizeof(newcoor));
+	newcoor->y = 0;
+	newcoor->x = 0;
+	all_coor->sec_elem = *newcoor;
+	all_coor->third_elem = *newcoor;
+	all_coor->fourth_elem = *newcoor;
 	tab = ft_newtab(4, 4, '.');
 	if (choose == 1)
 	{
@@ -48,7 +58,14 @@ int			check_manager(char *str, int choose)
 			return (0);
 		}
 		final_parsing(ptr_lst);
-		offset = check_pos_possible(*ptr_lst);
+		ptr = *ptr_lst;
+		offset = check_pos_possible(ptr);
+		ptr = *ptr_lst;
+		printf("\n\n\n");
+		ft_all_pos(ptr, all_coor);
+		printf("_____________________(%d, %d)\n", all_coor->sec_elem.x, all_coor->sec_elem.y);
+		printf("_____________________(%d, %d)\n", all_coor->third_elem.x, all_coor->third_elem.y);
+		printf("_____________________(%d, %d)\n\n\n", all_coor->fourth_elem.x, all_coor->fourth_elem.x);
 		if ((tab = pos_tetri(ptr_lst, tab, 0, 0, offset)) == NULL)
 		{
 			printf("RATER\n");

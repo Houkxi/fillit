@@ -6,11 +6,12 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:24:13 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/07 14:20:00 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/07 15:09:19 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "./libft/libft.h"
 #include "ft_prog.h"
@@ -73,37 +74,53 @@ t_coor		*tab_y_search(t_forme *elem)
 	return (NULL);
 }
 
-b_coor		*ft_all_pos(t_forme *ptr, t_coor start, b_coor *saver)
+b_coor	*ft_all_pos(t_forme *ptr, b_coor *saver)
 {
 	char **tab;
+	int i;
+	int x;
+	int y;
 
+	i = 0;
+	x = 0;
+	y = 0;
 	tab = ptr->next->tab;
 	if (tab)
 	{
+		printf("Yo\n");
 		while (tab[y])
 		{
+			printf("Je Rentre\n");
+			printf("%s\n", tab[y]);
+			while (tab[y][x] && tab[y][x] != ptr->next->myletter)
+				x++;
 			while (tab[y][x] && tab[y][x] == ptr->next->myletter)
 			{
-				if (i == 0)
-				{
-					saver->sec_elem.y = y;
-					saver->sec_elem.x = x;
-				}
+				printf("ICI\n");
 				if (i == 1)
 				{
+					printf("(%d, %d)\n", y, x);
 					saver->sec_elem.y = y;
 					saver->sec_elem.x = x;
 				}
 				if (i == 2)
 				{
-					saver->sec_elem.y = y;
-					saver->sec_elem.x = x;
+					printf("(%d, %d)\n", y, x);
+					saver->third_elem.y = y;
+					saver->third_elem.x = x;
 				}
+				if (i == 3)
+				{
+					printf("(%d, %d)\n", y, x);
+					saver->fourth_elem.y = y;
+					saver->fourth_elem.x = x;
+				}
+				i++;
 				x++;
 			}
+			x = 0;
 			y++;
 		}
 	}
-
-	return (b_coor);
+	return (saver);
 }
