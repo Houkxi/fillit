@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:08:46 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/11 18:34:15 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/13 17:19:27 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ int			final_parsing(t_forme **ptr_lst)
 int			check_manager(char *str)
 {
 	t_forme **ptr_lst;
-	//t_forme *ptr;
+	t_forme *ptr;
+	int size;
 	char	**tab;
 
 	ptr_lst = (t_forme**)malloc(sizeof(t_forme*));
 	*ptr_lst = ft_lstnew_re(NULL, 0);
+	ptr = *ptr_lst;
+	size = 2;
 	tab = ft_newtab(2, 2, '.');
 	if ((square_checks(str, 0, 0, ptr_lst)) == 0)
 	{
@@ -46,7 +49,16 @@ int			check_manager(char *str)
 		return (0);
 	}
 	final_parsing(ptr_lst);
-	backy_tracky(tab, ptr_lst, 0, 2);
+	ft_show_tab(tab);
+	while (ptr)
+	{
+		free(tab);
+		tab = ft_newtab(size, size, '.');
+		//ft_show_tab(tab);
+		if((tab = backy_tracky(tab, ptr_lst, 0, size)) == NULL)
+			size++;
+		ptr = ptr->next;
+	}
 	ft_show_tab(tab);
 	//backtrack_debut(ptr_lst);
 	return (1);
