@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 15:12:48 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/14 19:36:44 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/14 19:41:36 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ char	**backy_tracky(char **newtab, t_forme **ptr, int position, int size)
 		printf("\n");
 		while (i < size * size - 1)
 		{
-			if ((*ptr)->next && (check_posabilty_test((*ptr)->next, i, (*ptr)->next->next->tab, newtab)) == 1)
+			if ((*ptr)->next->next && (*ptr)->next && (check_posabilty_test((*ptr)->next, i, (*ptr)->next->next->tab, newtab)) == 1)
 			{
 				//printf("Dedans\n");
 				return (backy_tracky(newtab, &(*ptr)->next, 0, size));
 			}
 			i++;
 		}
-		if ((*ptr)->next && co->y <= size - 1 && co->x <= size - 1 &&
+		if ((*ptr)->next->next && co->y <= size - 1 && co->x <= size - 1 &&
 			(check_posabilty_test((*ptr)->next, i, (*ptr)->next->tab, newtab)) == 0)
 		{
 			//printf("Agrandir\n");
@@ -61,7 +61,10 @@ char	**backy_tracky(char **newtab, t_forme **ptr, int position, int size)
 		return (NULL);
 	}
 	if ((*ptr)->next->next)
+	{
+		printf("Vers FIN\n");
 		return(backy_tracky(newtab, &(*ptr)->next, 0, size));
+	}
 	return (newtab);
 }
 /*char	**backy_tracky(char **newtab, t_forme **ptr, int position, int size)
