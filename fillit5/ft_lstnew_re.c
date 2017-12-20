@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 11:46:42 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/20 13:13:11 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/20 18:52:27 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "./libft/libft.h"
 #include "ft_prog.h"
 
-t_forme	*ft_lstnew_re(char **content, size_t content_size)
+t_forme	*ft_lstnew_re(char **content)
 {
 	t_forme *newlst;
 
@@ -23,26 +23,19 @@ t_forme	*ft_lstnew_re(char **content, size_t content_size)
 		return (NULL);
 	newlst->next = NULL;
 	newlst->prev = NULL;
+	newlst->myl = 0;
+	newlst->xaxis = 0;
+	newlst->yaxis = 0;
 	if (!content)
-	{
 		newlst->tab = NULL;
-		newlst->myl = 0;
-		newlst->content_size = 0;
-		newlst->xaxis = 0;
-		newlst->yaxis = 0;
-	}
 	if (content)
 	{
-		if ((newlst->tab = (char**)malloc(sizeof(char*) * content_size)) == 0)
+		if ((newlst->tab = (char**)malloc(sizeof(char*) * 20)) == 0)
 		{
 			free(newlst);
 			return (NULL);
 		}
 		newlst->tab = content;
-		newlst->myl = 0;
-		newlst->content_size = content_size;
-		newlst->xaxis = 0;
-		newlst->yaxis = 0;
 	}
 	return (newlst);
 }

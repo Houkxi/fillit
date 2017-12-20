@@ -1,48 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_re.c                                     :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 11:46:42 by mmanley           #+#    #+#             */
-/*   Updated: 2017/12/20 13:13:11 by mmanley          ###   ########.fr       */
+/*   Updated: 2017/12/01 07:30:51 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdlib.h>
-#include "./libft/libft.h"
-#include "ft_prog.h"
+#include "libft.h"
 
-t_forme	*ft_lstnew_re(char **content, size_t content_size)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_forme *newlst;
+	t_list *newlst;
 
-	if ((newlst = (t_forme*)malloc(sizeof(t_forme))) == 0)
+	if ((newlst = (t_list*)malloc(sizeof(t_list))) == 0)
 		return (NULL);
 	newlst->next = NULL;
-	newlst->prev = NULL;
 	if (!content)
 	{
-		newlst->tab = NULL;
-		newlst->myl = 0;
+		newlst->content = NULL;
 		newlst->content_size = 0;
-		newlst->xaxis = 0;
-		newlst->yaxis = 0;
 	}
 	if (content)
 	{
-		if ((newlst->tab = (char**)malloc(sizeof(char*) * content_size)) == 0)
+		if ((newlst->content =
+			(void*)malloc(content_size)) == 0)
 		{
 			free(newlst);
 			return (NULL);
 		}
-		newlst->tab = content;
-		newlst->myl = 0;
+		ft_memcpy(newlst->content, content, content_size);
 		newlst->content_size = content_size;
-		newlst->xaxis = 0;
-		newlst->yaxis = 0;
 	}
 	return (newlst);
 }
