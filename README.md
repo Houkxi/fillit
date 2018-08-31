@@ -43,6 +43,7 @@ The file is parsed this way :
 There will be no unexpected quits from the program (Segmentation fault, bus error, double free, etc).
 
 ## Usage
+
 ```C
 prompt> ./fillit tetris.txt
 CAAA
