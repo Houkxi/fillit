@@ -44,7 +44,7 @@ There will be no unexpected quits from the program (Segmentation fault, bus erro
 
 ## Usage
 
-```C
+```console
 prompt> ./fillit tetris.txt
 CAAA
 CBBA
